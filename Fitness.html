@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Bredrins.online — Fitness Planner</title>
+  <link rel="stylesheet" href="Fitness.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="logo-link" href="/index.html" title="Back to menu">Bredrins.online</a>
+  </header>
+
+  <main class="planner">
+    <!-- LEFT PANEL: PRESETS & DAYS -->
+    <div class="left-panel visible" id="daysPanel">
+      <h2 class="section-title">Presets / Week</h2>
+      <div class="day-row" data-day="presets">
+        <label class="day-label">Presets</label>
+        <div class="custom-select" id="presetSelect">
+          <button class="select-btn">Choose preset</button>
+          <div class="select-options">
+            <div class="option" data-value="ppl">Push Pull Legs (PPL)</div>
+            <div class="option" data-value="ul">Upper Lower (UL)</div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-title">Days</h3>
+      <div class="days-list" id="daysList"></div>
+    </div>
+
+    <!-- MIDDLE PANEL: EXERCISES -->
+    <div class="middle-panel hidden" id="exercisesPanel">
+      <h2 class="section-title">Exercises</h2>
+      <div id="exList" class="ex-list">
+        <p class="hint">Select a day or preset to show its exercises.</p>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL: EXERCISE INFO -->
+    <div class="right-panel hidden" id="infoPanel">
+      <h2 class="section-title">Exercise Info</h2>
+      <div id="infoContent" class="info-content">
+        <p class="hint">Select an exercise to see detailed instructions and examples.</p>
+      </div>
+    </div>
+  </main>
+
+  <script src="Fitness.js"></script>
+</body>
+</html>

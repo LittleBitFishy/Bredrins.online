@@ -1,0 +1,102 @@
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #030b1a;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  padding-top: 100px;
+  color: white;
+}
+
+.container {
+  text-align: center;
+}
+
+/* Logo Styling */
+.logo {
+  font-size: 72px;
+  font-weight: 800;
+  background: linear-gradient(45deg, #00c6ff, #0072ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fadeIn 2s ease-in-out;
+  position: relative;
+  margin-bottom: 40px;
+}
+
+/* Button Group */
+.button-group {
+  display: inline-flex;           /* Let content define width */
+  flex-direction: column;
+  align-items: stretch;          /* Stretch buttons to match parent */
+  gap: 20px;
+  animation: fadeIn 2s ease-in-out;
+  margin: 0 auto;                /* Center the group horizontally */
+}
+
+.button-group button {
+  background: #0072ff;
+  color: white;
+  border: none;
+  padding: 14px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-family: inherit;
+  min-width: max-content;       /* Use widest content as base */
+  width: 100%;                  /* Make all buttons match that width */
+  text-align: center;
+}
+
+.button-group button:hover {
+  background: #005fcc;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive font for logo */
+@media (max-width: 600px) {
+  .logo {
+    font-size: 48px;
+  }
+
+  .button-group {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .button-group button {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+.fade-slide{
+  animation: fadeSlide 0.4s ease forwards;
+}
+
+@keyframes fadeSlide{
+  0%{opacity:0;transform:translateY(20px);}
+  100%{opacity:1;transform:translateY(0);}
+}
+

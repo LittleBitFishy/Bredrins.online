@@ -1,0 +1,155 @@
+:root{
+  --bg: #030b1a;
+  --accent1: #00c6ff;
+  --accent2: #0072ff;
+  --accent-dark: #005fcc;
+  --panel: rgba(255,255,255,0.03);
+  --muted: rgba(255,255,255,0.6);
+}
+
+*{box-sizing:border-box;}
+html,body{height:100%;}
+body{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg);
+  color: #fff;
+  margin:0;
+  padding:40px 24px;
+}
+
+.topbar{display:flex;justify-content:flex-start;margin-bottom:18px}
+.logo-link{
+  font-weight:800;font-size:20px;text-decoration:none;
+  background:linear-gradient(45deg,var(--accent1),var(--accent2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* FLEX LAYOUT */
+.planner {
+  display: flex;
+  gap: 18px;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* PANELS */
+.left-panel,
+.middle-panel,
+.right-panel {
+  background: var(--panel);
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+
+  transition: flex 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+  transform: translateX(20px);
+  opacity: 0;
+}
+
+/* visible state */
+.left-panel.visible,
+.middle-panel.visible,
+.right-panel.visible {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* hiding state slides out */
+.left-panel.hiding,
+.middle-panel.hiding,
+.right-panel.hiding {
+  transform: translateX(20px);
+  opacity: 0;
+}
+
+/* completely hidden */
+.left-panel.hidden,
+.middle-panel.hidden,
+.right-panel.hidden { display: none; }
+
+/* Flexible widths */
+.planner.one-panel > .left-panel,
+.planner.one-panel > .middle-panel,
+.planner.one-panel > .right-panel { flex:1 1 100%; }
+
+.planner.two-panels > .left-panel,
+.planner.two-panels > .middle-panel,
+.planner.two-panels > .right-panel { flex:1 1 50%; }
+
+.planner.three-panels > .left-panel,
+.planner.three-panels > .middle-panel,
+.planner.three-panels > .right-panel { flex:1 1 33.33%; }
+
+/* Section titles */
+.section-title{font-size:18px;margin-bottom:12px;color:var(--muted)}
+
+.day-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.03)}
+.day-label{min-width:70px;font-weight:700}
+
+/* Custom dropdown */
+.custom-select{position: relative;width:150px;}
+.select-btn{
+  width: 100%;
+  background: linear-gradient(90deg,var(--accent2),var(--accent-dark));
+  color: #fff;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s ease;
+}
+.select-btn:hover{ background: linear-gradient(90deg,#005fcc,#003f80);}
+.select-options{
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: linear-gradient(90deg,var(--accent2),var(--accent-dark));
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 10;
+  flex-direction: column;
+}
+.select-options.show{display: flex;}
+.option{
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.option:hover{ background: linear-gradient(90deg,#005fcc,#003f80); }
+
+/* Exercises list */
+.ex-list{display:flex;flex-direction:column;gap:10px; max-height: 50vh; overflow-y: auto;}
+.exercise-item{
+  display:flex;align-items:center;gap:12px;padding:10px;
+  background:rgba(255,255,255,0.02);
+  border-radius:8px;
+  opacity:0;
+  transform: translateX(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.exercise-item.visible{ opacity:1; transform: translateX(0);}
+.exercise-item .ex-reveal{ transform:rotate(90deg);background:transparent;border:none;cursor:pointer;font-weight:900;color:var(--accent2);}
+.ex-name{flex:1}
+
+.info-content textarea{width:100%;min-height:120px;margin-top:8px;padding:10px;border-radius:8px;border:none;resize:vertical}
+.image-box{min-height:80px;border:1px dashed rgba(255,255,255,0.06);border-radius:8px;display:flex;align-items:center;justify-content:center;padding:10px;margin-top:8px}
+.hint{color:var(--muted);font-size:13px}
+.info-content img{border-radius:8px;margin-top:8px;width:100%;}
+
+/* Media Queries for Mobile */
+@media (max-width:900px){
+  .planner{flex-direction:column;}
+}
+
+@media (max-width:600px){
+  .day-label{min-width:60px;}
+  .logo-link{font-size:18px;}
+  .custom-select{width:100%;}
+  body{padding:20px 12px;}
+}
