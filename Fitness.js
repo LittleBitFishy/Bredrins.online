@@ -6,36 +6,64 @@ const daysList = document.getElementById('daysList');
 const presetSelect = document.getElementById('presetSelect');
 
 const exercises = {
-  'Flat Bench Press': {description:'Lie on flat bench, grip bar slightly wider than shoulders, lower to chest, press up.', muscles:'Chest, shoulders, triceps', image:'images/flat_bench_press.jpg'},
-  'Incline Bench Press': {description:'Lie on incline bench (30-45°), lower bar to chest, press up.', muscles:'Upper chest, shoulders, triceps', image:'images/incline_bench_press.jpg'},
-  'Shoulder Press': {description:'Seated/standing, push bar/dumbbells overhead.', muscles:'Shoulders, triceps', image:'images/shoulder_press.jpg'},
-  'Dumbbell Flyes': {description:'Lie on bench, arms slightly bent, open dumbbells to sides, squeeze up.', muscles:'Chest, shoulders', image:'images/dumbbell_flyes.jpg'},
-  'Triceps Pushdowns': {description:'Push cable down with elbows close, extend arms fully.', muscles:'Triceps', image:'images/triceps_pushdowns.jpg'},
-  'Deadlift': {description:'Feet hip-width, grip bar, lift with hips/knees, back neutral.', muscles:'Back, glutes, hamstrings, core', image:'images/deadlift.jpg'},
-  'Pull-Ups': {description:'Hang from bar, palms away, pull chest to bar, lower slowly.', muscles:'Back, biceps, shoulders', image:'images/pull_ups.jpg'},
-  'Bent-Over Row': {description:'Hinge at hips, pull barbell/dumbbells to torso.', muscles:'Back, biceps', image:'images/bent_over_row.jpg'},
-  'Face Pulls': {description:'Pull rope to face on cable machine.', muscles:'Rear delts, traps, upper back', image:'images/face_pulls.jpg'},
-  'Barbell Curls': {description:'Curl barbell up to shoulders, elbows stationary.', muscles:'Biceps', image:'images/barbell_curls.jpg'},
-  'Squats': {description:'Feet shoulder-width, lower hips until thighs parallel, push up.', muscles:'Quads, glutes, hamstrings, core', image:'images/squat.jpg'},
-  'Leg Press': {description:'Push platform with feet shoulder-width, extend legs, lower slowly.', muscles:'Quads, glutes, hamstrings', image:'images/leg_press.jpg'},
-  'Romanian Deadlift': {description:'Hinge at hips, bar/dumbbells down legs, return upright.', muscles:'Hamstrings, glutes, back', image:'images/romanian_deadlift.jpg'},
-  'Walking Lunges': {description:'Step forward, lower back knee to ground, push up, alternate legs.', muscles:'Quads, glutes, hamstrings', image:'images/walking_lunges.jpg'},
-  'Leg Curls': {description:'Curl legs on machine towards glutes.', muscles:'Hamstrings', image:'images/leg_curls.jpg'},
-  'Back Squat': {description:'Bar rests on back, lower hips until thighs parallel, push up.', muscles:'Quads, glutes, hamstrings, core', image:'images/back_squat.jpg'},
-  'Overhead Press': {description:'Push bar/dumbbells overhead from shoulders.', muscles:'Shoulders, triceps', image:'images/overhead_press.jpg'},
-  'Rows': {description:'Pull bar/dumbbells to torso while bent over.', muscles:'Back, biceps', image:'images/rows.jpg'},
-  'Bicep Curls': {description:'Curl dumbbells/barbell to shoulders.', muscles:'Biceps', image:'images/bicep_curls.jpg'},
-  'Tricep Extensions': {description:'Extend arms overhead or cable to work triceps.', muscles:'Triceps', image:'images/tricep_extensions.jpg'},
-  'Calf Raises': {description:'Raise heels standing or seated.', muscles:'Calves', image:'images/calf_raises.jpg'}
+  'Incline Smith Press': { description: 'Set incline bench in Smith machine, lower bar to upper chest, press upward.', muscles: 'Upper chest, shoulders, triceps', image: 'images/incline_smith_press.jpg' },
+  'Dumbbell Decline Fly': { description: 'Lie on decline bench with dumbbells, open arms wide, squeeze chest at top.', muscles: 'Lower chest', image: 'images/dumbbell_decline_fly.jpg' },
+  'Front Delt Raise': { description: 'Raise dumbbells or plate in front to shoulder height, control the descent.', muscles: 'Front delts, shoulders', image: 'images/front_delt_raise.jpg' },
+  'Cable Lateral Raise': { description: 'Raise cable handle from side until shoulder height, control down.', muscles: 'Lateral delts', image: 'images/cable_lateral_raise.jpg' },
+  'Rear Delt Cable Fly': { description: 'Cross cables, pull arms apart at shoulder height, squeeze rear delts.', muscles: 'Rear delts, traps', image: 'images/rear_delt_cable_fly.jpg' },
+  'Wide Grip Cable Pulldown': { description: 'Pull bar to chest with wide grip, squeeze back.', muscles: 'Lats, biceps', image: 'images/wide_grip_cable_pulldown.jpg' },
+  'Seated Cable Row': { description: 'Pull cable handle to torso, squeeze shoulder blades together.', muscles: 'Back, biceps', image: 'images/seated_cable_row.jpg' },
+  'Preacher Curl': { description: 'Rest arms on preacher bench pad, curl bar upward under control.', muscles: 'Biceps', image: 'images/preacher_curl.jpg' },
+  'Hammer Curl': { description: 'Hold dumbbells neutral grip, curl up to shoulders.', muscles: 'Biceps, forearms', image: 'images/hammer_curl.jpg' },
+  'Cable Overhead Extension': { description: 'Extend arms overhead using cable rope, stretch triceps fully.', muscles: 'Triceps', image: 'images/cable_overhead_extension.jpg' },
+
+  // Lower
+  'RDL': { description: 'Hinge at hips, lower bar down legs, feel hamstring stretch, return upright.', muscles: 'Hamstrings, glutes, lower back', image: 'images/rdl.jpg' },
+  'Leg Curl': { description: 'Curl legs toward glutes using machine.', muscles: 'Hamstrings', image: 'images/leg_curl.jpg' },
+  'Leg Press': { description: 'Push platform away, control descent.', muscles: 'Quads, glutes, hamstrings', image: 'images/leg_press.jpg' },
+  'Leg Extensions': { description: 'Extend legs on machine, contract quads at top.', muscles: 'Quadriceps', image: 'images/leg_extensions.jpg' },
+  'Calf Raises': { description: 'Raise heels standing or seated.', muscles: 'Calves', image: 'images/calf_raises.jpg' },
+  'Cable Crunches': { description: 'Kneel with cable rope, crunch forward contracting abs.', muscles: 'Abdominals', image: 'images/cable_crunches.jpg' },
+  'Forearm Curls': { description: 'Curl wrists upward holding barbell/dumbbell.', muscles: 'Forearms', image: 'images/forearm_curls.jpg' }
 };
 
 const presets = {
-  ppl: { 'Push':['Flat Bench Press','Incline Bench Press','Shoulder Press','Dumbbell Flyes','Triceps Pushdowns'], 'Pull':['Deadlift','Pull-Ups','Bent-Over Row','Face Pulls','Barbell Curls'], 'Legs':['Squats','Leg Press','Romanian Deadlift','Walking Lunges','Leg Curls'] },
-  ul: { 'Upper':['Bench Press','Overhead Press','Pull-Ups','Rows','Bicep Curls','Tricep Extensions'], 'Lower':['Back Squat','Deadlift','Leg Press','Leg Curl','Calf Raises'] }
+  ppl: { 
+    'Push': ['Flat Bench Press', 'Incline Bench Press', 'Shoulder Press', 'Dumbbell Flyes', 'Triceps Pushdowns'],
+    'Pull': ['Deadlift', 'Pull-Ups', 'Bent-Over Row', 'Face Pulls', 'Barbell Curls'],
+    'Legs': ['Squats', 'Leg Press', 'Romanian Deadlift', 'Walking Lunges', 'Leg Curls']
+  },
+  ul: { 
+    'Upper': [
+      'Incline Smith Press',
+      'Dumbbell Decline Fly',
+      'Front Delt Raise',
+      'Cable Lateral Raise',
+      'Rear Delt Cable Fly',
+      'Wide Grip Cable Pulldown',
+      'Seated Cable Row',
+      'Preacher Curl',
+      'Hammer Curl',
+      'Cable Overhead Extension'
+    ],
+    'Lower': [
+      'RDL',
+      'Leg Curl',
+      'Leg Press',
+      'Leg Extensions',
+      'Calf Raises',
+      'Cable Crunches',
+      'Forearm Curls'
+    ]
+  }
 };
 
-const defaultPPLDays=['Push','Pull','Legs','Rest','Push','Pull','Legs'];
-const defaultULDays=['Upper','Lower','Rest','Upper','Lower','Rest','Rest'];
+const defaultPPLDays = ['Push', 'Pull', 'Legs', 'Rest', 'Push', 'Pull', 'Legs'];
+const defaultULDays = ['Lower', 'Upper', 'Rest', 'Upper', 'Lower', 'Rest', 'Upper'];
+
+// Keep rest of JS unchanged...
+
+// ... [Keep the rest of your JS exactly the same below this point]
 
 function arraysEqual(a,b){return a.length===b.length && a.every((v,i)=>v===b[i]);}
 
@@ -79,11 +107,12 @@ function updateLayout(){
 // -------------------
 function createDayRows(){
   daysList.innerHTML='';
+  const weekDays = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
   for(let i=0;i<7;i++){
     const row=document.createElement('div');
     row.className='day-row';
     row.innerHTML=`
-      <label class="day-label">Day ${i+1}</label>
+      <label class="day-label">${weekDays[i]}</label>
       <div class="custom-select day-select" data-day="${i}">
         <button class="select-btn">Choose day</button>
         <div class="select-options">
